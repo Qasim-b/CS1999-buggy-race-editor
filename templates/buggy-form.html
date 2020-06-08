@@ -5,6 +5,9 @@
 {% block content %}
 
   <h1>Make buggy</h1>
+  <p>
+    {{msg}}
+  </p>
   <form action="/new" method="post">
     <table>
     <tr>
@@ -13,22 +16,56 @@
     </tr>
     <tr>
     <td><label for="flag_color">Colour of flag:</label></td>
-    <td><input type="text" name="flag_color" /></td>
+    <td><input type="color" name="flag_color" /></td>
     </tr>
 
     <tr>
     <td><label for="flag_color_secondary">Secondary flag colour:</label></td>
-    <td><input type="text" name="flag_color_secondary" /></td>
+    <td><input type="color" name="flag_color_secondary" /></td>
     </tr>
 
     <tr>
     <td><label for="flag_pattern">Flag pattern:</label></td>
-    <td><input type="text" name="flag_pattern" /></td>
+    <td><input type="radio" id="plain" name="flag_pattern" value="plain" checked />
+        <label for="plain">Plain</label><br>
+        <input type="radio" id="vstripe" name="flag_pattern" value="vstripe"  />
+        <label for="vstripe">Vertical stripe</label><br>
+        <input type="radio" id="hstripe" name="flag_pattern" value="hstripe"  />
+        <label for="hstripe">Horizontal stripe</label><br>
+        <input type="radio" id="dstripe" name="flag_pattern" value="dstripe"  />
+        <label for="dstripe">Diagonal stripe</label><br>
+        <input type="radio" id="checker" name="flag_pattern" value="checker"  />
+        <label for="checker">Checkered</label><br>
+        <input type="radio" id="spot" name="flag_pattern" value="spot"  />
+        <label for="spot">Spotted</label><br>
+
+    </td>
     </tr>
 
     <tr>
     <td><label for="power_type">Power type:</label></td>
-    <td><input type="text" name="power_type" /></td>
+    <td><input type="radio" id="petrol" name="power_type" value="petrol" checked />
+        <label for="petrol">Petrol</label><br>
+        <input type="radio" id="fusion" name="power_type" value="fusion" />
+        <label for="fusion">Fusion</label><br>
+        <input type="radio" id="steam" name="power_type" value="steam" />
+        <label for="steam">Steam</label><br>
+        <input type="radio" id="bio" name="power_type" value="bio" />
+        <label for="bio">Bio</label><br>
+        <input type="radio" id="electric" name="power_type" value="electric" />
+        <label for="electric">Electric</label><br>
+        <input type="radio" id="rocket" name="power_type" value="rocket" />
+        <label for="rocket">Rocket</label><br>
+        <input type="radio" id="hamster" name="power_type" value="hamster" />
+        <label for="hamster">Hamster</label><br>
+        <input type="radio" id="thermo" name="power_type" value="thermo" />
+        <label for="thermo">Thermo</label><br>
+        <input type="radio" id="solar" name="power_type" value="solar" />
+        <label for="solar">Solar</label><br>
+        <input type="radio" id="wind" name="power_type" value="wind" />
+        <label for="wind">Wind</label><br>
+
+    </td>
     </tr>
 
     <tr>

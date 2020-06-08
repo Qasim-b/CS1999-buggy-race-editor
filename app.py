@@ -24,9 +24,12 @@ def home():
 def create_buggy():
   if request.method == 'GET':
     return render_template("buggy-form.html")
-  elif request.method == 'POST':
+  elif request.method == 'POST':  ## added all data entry fields, need to validate and add costs
     msg=""
     qty_wheels = request.form['qty_wheels']
+    if not qty_wheels.isdigit():
+        msg = f"This is not a number:{qty_wheels}"
+        return render_template("buggy-form.html",msg=msg)
     flag_color = request.form['flag_color']
     flag_color_secondary = request.form['flag_color_secondary']
     flag_pattern = request.form['flag_pattern']
