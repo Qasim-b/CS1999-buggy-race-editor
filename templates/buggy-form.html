@@ -16,14 +16,14 @@
     </tr>
     <tr>
     <td><label for="flag_color">Colour of flag:</label></td>
-    <td><input type="color" name="flag_color" /></td>
+    <td><input type="color" name="flag_color" value= "#ffffff" /></td>
     </tr>
 
     <tr>
     <td><label for="flag_color_secondary">Secondary flag colour:</label></td>
-    <td><input type="color" name="flag_color_secondary" /></td>
+    <td><input type="color" name="flag_color_secondary" value= "#000000" /></td>
     </tr>
-
+<!-- Using radio buttons for data with that requires a single specific input -->
     <tr>
     <td><label for="flag_pattern">Flag pattern:</label></td>
     <td><input type="radio" id="plain" name="flag_pattern" value="plain" checked />
@@ -133,12 +133,36 @@
 
     <tr>
     <td><label for="armour">Armour:</label></td>
-    <td><input type="text" name="armour" /></td>
+    <td><input type="radio" id="none" name="armour" value="none" checked />
+    <label for="none">None</label><br>
+    <input type="radio" id="wood" name="armour" value="wood"  />
+    <label for="wood">Wood</label><br>
+    <input type="radio" id="aluminium" name="armour" value="aluminium"  />
+    <label for="aluminium">Aluminium</label><br>
+    <input type="radio" id="thinsteel" name="armour" value="thinsteel"  />
+    <label for="thinsteel">Thinsteel</label><br>
+    <input type="radio" id="thicksteel" name="armour" value="thicksteel"  />
+    <label for="thicksteel">Thicksteel</label><br>
+    <input type="radio" id="titanium" name="armour" value="titanium"  />
+    <label for="titanium">Titanium</label><br>
+
+    </td>
     </tr>
 
     <tr>
     <td><label for="attack">Attack:</label></td>
-    <td><input type="text" name="attack" /></td>
+    <td>
+    <input type="radio" id="none" name="attack" value="none" checked  />
+    <label for="none">None</label><br>
+    <input type="radio" id="spike" name="attack" value="spike"   />
+    <label for="spike">Spike</label><br>
+    <input type="radio" id="flame" name="attack" value="flame"   />
+    <label for="flame">Flame</label><br>
+    <input type="radio" id="charge" name="attack" value="charge"   />
+    <label for="charge">Charge</label><br>
+    <input type="radio" id="biohazard" name="attack" value="biohazard"   />
+    <label for="biohazard">Biohazard</label><br>
+    </td>
     </tr>
 
     <tr>
@@ -148,27 +172,63 @@
 
     <tr>
     <td><label for="fireproof">Fireproof:</label></td>
-    <td><input type="text" name="fireproof" /></td>
+    <td>
+    <input type="radio" id="fireproof" name="fireproof" value=True  />
+    <label for="fireproof">Yes</label><br>
+    <input type="radio" id="fireproof" name="fireproof" value=False checked  />
+    <label for="fireproof">No</label><br>
+    </td>
     </tr>
 
     <tr>
     <td><label for="insulated">Insulated:</label></td>
-    <td><input type="text" name="insulated" /></td>
+    <td>
+    <input type="radio" id="insulated" name="insulated" value=True  />
+    <label for="insulated">Yes</label><br>
+    <input type="radio" id="insulated" name="insulated" value=False checked  />
+    <label for="insulated">No</label><br>
+
+    </td>
     </tr>
 
     <tr>
     <td><label for="antibiotic">Antibiotic:</label></td>
-    <td><input type="text" name="antibiotic" /></td>
+    <td>
+    <input type="radio" id="antibiotic" name="antibiotic" value=True  />
+    <label for="antibiotic">Yes</label><br>
+    <input type="radio" id="antibiotic" name="antibiotic" value=False checked  />
+    <label for="antibiotic">No</label><br>
+  </td>
     </tr>
 
     <tr>
-    <td><label for="banging">Banging:</label></td>
-    <td><input type="text" name="banging" /></td>
+    <td><label for="banging">Banging sound system:</label></td>
+    <td>
+    <input type="radio" id="banging" name="banging" value=True  />
+    <label for="banging">Yes</label><br>
+    <input type="radio" id="banging" name="banging" value=False checked  />
+    <label for="banging">No</label><br>
+
+    </td>
     </tr>
 
     <tr>
     <td><label for="algo">Algorithm:</label></td>
-    <td><input type="text" name="algo" /></td>
+    <td>
+    <input type="radio" id="defensive" name="algo" value="defensive"   />
+    <label for="defensive">Defensive</label><br>
+    <input type="radio" id="steady" name="algo" value="steady" checked   />
+    <label for="steady">Steady</label><br>
+    <input type="radio" id="offensive" name="algo" value="offensive"   />
+    <label for="offensive">Offensive</label><br>
+    <input type="radio" id="titfortat" name="algo" value="titfortat"   />
+    <label for="titfortat">Titfortat</label><br>
+    <input type="radio" id="random" name="algo" value="random"   />
+    <label for="random">Random</label><br>
+    <input type="radio" id="buggy" name="algo" value="buggy"   />
+    <label for="buggy">Buggy</label><br>
+
+    </td>
     </tr>
 
   </table>
