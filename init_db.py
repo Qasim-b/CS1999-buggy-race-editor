@@ -44,7 +44,8 @@ con.execute("""
     insulated             BOOLEAN,
     antibiotic            BOOLEAN,
     banging               BOOLEAN,
-    algo                  VARCHAR(20)
+    algo                  VARCHAR(20),
+    total_cost            INTEGER DEFAULT 0
 
 
 

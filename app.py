@@ -67,13 +67,13 @@ def create_buggy():
 # a page for displaying the buggy
 #------------------------------------------------------------
 @app.route('/buggy')
-def show_buggies():
+def show_buggies(): ## test hardcode code cost into this
   con = sql.connect(DATABASE_FILE)
   con.row_factory = sql.Row
   cur = con.cursor()
   cur.execute("SELECT * FROM buggies")
   record = cur.fetchone();
-  return render_template("buggy.html", buggy = record)
+  return render_template("buggy.html", buggy = record,) ##test cost
 
 #------------------------------------------------------------
 # a page for displaying the buggy
