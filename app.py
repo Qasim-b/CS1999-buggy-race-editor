@@ -40,12 +40,17 @@ def create_buggy():
     armour = request.form['armour']
     attack = request.form['attack']
     qty_attack = request.form['qty_attack']
+    fireproof = request.form['fireproof']
+    insulated = request.form['insulated']
+    antibiotic = request.form['antibiotic']
+    banging = request.form['banging']
+    algo = request.form['algo']
     try:
       msg = f"qty_wheels={qty_wheels}"
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
-        cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=? WHERE id=?",
-        (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, DEFAULT_BUGGY_ID))
+        cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=?, fireproof=?, insulated=?, antibiotic=?, banging=?, algo=? WHERE id=?",
+        (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, DEFAULT_BUGGY_ID))
         con.commit()
         msg = "Record successfully saved"
     except:
