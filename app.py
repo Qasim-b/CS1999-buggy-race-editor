@@ -26,15 +26,26 @@ def create_buggy():
     return render_template("buggy-form.html")
   elif request.method == 'POST':
     msg=""
+    qty_wheels = request.form['qty_wheels']
+    flag_color = request.form['flag_color']
+    flag_color_secondary = request.form['flag_color_secondary']
+    flag_pattern = request.form['flag_pattern']
+    power_type = request.form['power_type']
+    power_units = request.form['power_units']
+    aux_power_type = request.form['aux_power_type']
+    aux_power_units = request.form['aux_power_units']
+    hamster_booster = request.form['hamster_booster']
+    tyres = request.form['tyres']
+    qty_tyres = request.form['qty_tyres']
+    armour = request.form['armour']
+    attack = request.form['attack']
+    qty_attack = request.form['qty_attack']
     try:
-      qty_wheels = request.form['qty_wheels']
-      flag_color = request.form['flag_color']
-      flag_color_secondary = request.form['flag_color_secondary']
-      flag_pattern = request.form['flag_pattern']
       msg = f"qty_wheels={qty_wheels}"
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
-        cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=? WHERE id=?", (qty_wheels, flag_color, flag_color_secondary, flag_pattern, DEFAULT_BUGGY_ID))
+        cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=? WHERE id=?",
+        (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, DEFAULT_BUGGY_ID))
         con.commit()
         msg = "Record successfully saved"
     except:
