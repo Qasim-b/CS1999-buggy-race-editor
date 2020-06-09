@@ -66,6 +66,11 @@ def create_buggy():
     if int(qty_wheels)%2 != 0: ## check if even
         msg = f"rule violated, there needs to be an even number of wheels!"
         return render_template("buggy-form.html",buggy = record, msg=msg)
+
+    if int(qty_wheels) < 4:
+        msg = f"rule violated, there needs to be atleast 4 wheels!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+
     if str(flag_color) == str(flag_color_secondary) and str(flag_pattern) != "plain": ## check if flag colors are not similar if pattern not plain
         msg = f"rule violated, both flag colors cannot be the same"
         return render_template("buggy-form.html",buggy = record, msg=msg)
