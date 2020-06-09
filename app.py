@@ -33,45 +33,27 @@ def create_buggy():
       return render_template("buggy-form.html",buggy = record)
   elif request.method == 'POST':  ## added all data entry fields, need to validate and add costs
     msg=""
-    qty_wheels = request.form['qty_wheels']
-    if not qty_wheels.isdigit(): # basic validation for integer entries.
-        msg = f"This is not a number:{qty_wheels}"
-        return render_template("buggy-form.html",msg=msg)
+    violations=""
+    qty_wheels = request.form['qty_wheels'] # basic validation for integer entries., used to work until did task2-edit. But since then user only able to input numbers so no need to check if string
     flag_color = request.form['flag_color']
     flag_color_secondary = request.form['flag_color_secondary']
     flag_pattern = request.form['flag_pattern']
     power_type = request.form['power_type']
     power_units = request.form['power_units']
-    if not power_units.isdigit():
-        msg = f"This is not a number:{power_units}"
-        return render_template("buggy-form.html",msg=msg)
     aux_power_type = request.form['aux_power_type']
     aux_power_units = request.form['aux_power_units']
-    if not aux_power_units.isdigit():
-        msg = f"This is not a number:{aux_power_units}"
-        return render_template("buggy-form.html",msg=msg)
     hamster_booster = request.form['hamster_booster']
-    if not hamster_booster.isdigit():
-        msg = f"This is not a number:{hamster_booster}"
-        return render_template("buggy-form.html",msg=msg)
     tyres = request.form['tyres']
     qty_tyres = request.form['qty_tyres']
-    if not qty_tyres.isdigit():
-        msg = f"This is not a number:{qty_tyres}"
-        return render_template("buggy-form.html",msg=msg)
     armour = request.form['armour']
     attack = request.form['attack']
     qty_attack = request.form['qty_attack']
-    if not qty_attack.isdigit():
-        msg = f"This is not a number:{qty_attack}"
-        return render_template("buggy-form.html",msg=msg)
     fireproof = request.form['fireproof']
     insulated = request.form['insulated']
     antibiotic = request.form['antibiotic']
     banging = request.form['banging']
     algo = request.form['algo']
     try:
-      msg = f"qty_wheels={qty_wheels}"
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=?, fireproof=?, insulated=?, antibiotic=?, banging=?, algo=? WHERE id=?",
