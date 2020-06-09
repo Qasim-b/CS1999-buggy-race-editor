@@ -10,7 +10,7 @@
   </p>
   <form action="/new" method="post">
     <table>
-    <tr>
+    <tr><!-- applying task2-edit, doesn't like the radio buttons however, so only implementing on text fields-->
     <td><label for="qty_wheels">Number of wheels:</label></td>
     <td><input type="text" name="qty_wheels" value= "{{ buggy['qty_wheels'] }}" /></td>
     </tr>
@@ -70,7 +70,7 @@
 
     <tr>
     <td><label for="power_units">Power units:</label></td>
-    <td><input type="text" name="power_units" /></td>
+    <td><input type="text" name="power_units" value= "{{ buggy['power_units'] }}" /></td>
     </tr>
 
     <tr>
@@ -102,12 +102,12 @@
 
     <tr>
     <td><label for="aux_power_units">Aux power units:</label></td>
-    <td><input type="text" name="aux_power_units" /></td>
+    <td><input type="text" name="aux_power_units" value= "{{ buggy['aux_power_units'] }}"/></td>
     </tr>
 
     <tr>
     <td><label for="hamster_booster">Hamster booster:</label></td>
-    <td><input type="text" name="hamster_booster" /></td>
+    <td><input type="text" name="hamster_booster" value= "{{ buggy['hamster_booster'] }}" /></td>
     </tr>
 
     <tr>
@@ -128,7 +128,7 @@
 
     <tr>
     <td><label for="qty_tyres">Number of tyres:</label></td>
-    <td><input type="text" name="qty_tyres" /></td>
+    <td><input type="text" name="qty_tyres" value= "{{ buggy['qty_tyres'] }}" /></td>
     </tr>
 
     <tr>
@@ -167,7 +167,7 @@
 
     <tr>
     <td><label for="qty_attack">Number of attacks:</label></td>
-    <td><input type="text" name="qty_attack" /></td>
+    <td><input type="text" name="qty_attack" value= "{{ buggy['qty_attack'] }}" /></td>
     </tr>
 
     <tr>
