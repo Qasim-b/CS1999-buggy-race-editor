@@ -68,10 +68,19 @@ ENV:
 > if I want to go into production mode
 > 'FLASK_ENV" python app.py' into Git Bash
 > production is the default state
+>
 
 MULTI:
->Sort of works, always starts off with a buggy from the database, also the stored values for radio buttons dont work due to limitations.
-> Couldnt get DELETE to work, would go on
+>Sort of works, always starts off with a buggy from the database, also the stored values for radio buttons don't work due to limitations.
+>Couldn't get DELETE to work, tried putting buggy_id in but wouldn't update.
 
-Test:
->
+Delete:
+>Tried to implement using what I learnt from multi however, it said that it deleted the entry yet it would still appear on buggy show.
+>So I removed it as to not cause further issues.
+
+AUTOFILL:
+> Never got around to doing, however if possible would have preferred to implement server side thus meaning I had control over autofill.
+> However could also be useful on client side if they wanted to modify their own autofill.
+
+Tests:
+> Will do manual tests, shown in testing.md file
