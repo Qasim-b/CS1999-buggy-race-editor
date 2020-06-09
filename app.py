@@ -128,7 +128,19 @@ def create_buggy():
     if tyres == "maglev":
         tyres_cost = int(qty_tyres) * 50
 
-    overall_cost = power_cost + aux_power_cost + tyres_cost
+    armour_cost=0
+    if armour == "wood": ##need to modify cost based on number of wheels
+        armour_cost=40
+    elif armour == "aluminium":
+        armour_cost=200
+    elif armour == "thinsteel":
+        armour_cost=100
+    elif armour == "thicksteel":
+        armour_cost=200
+    elif armour == "titanium":
+        armour_cost=290
+
+    overall_cost = power_cost + aux_power_cost + tyres_cost + armour_cost
 
     try:
       with sql.connect(DATABASE_FILE) as con:
