@@ -60,6 +60,9 @@ def create_buggy():
     antibiotic = request.form['antibiotic']
     banging = request.form['banging']
     algo = request.form['algo']
+    if not qty_wheels.isdigit(): ##has no use, just used to show i did task 1-valid. Dont need anymore.
+        msg = f"rule violated, enter a number for quantity of wheels!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
     if int(qty_wheels)%2 != 0: ## check if even
         msg = f"rule violated, there needs to be an even number of wheels!"
         return render_template("buggy-form.html",buggy = record, msg=msg)
@@ -69,6 +72,7 @@ def create_buggy():
     if int(qty_tyres) < int(qty_wheels): ## check if enough tyres
         msg = f"rule violated, there are not enough tires!"
         return render_template("buggy-form.html",buggy = record, msg=msg)
+
 
     power_cost = 0
 
@@ -140,7 +144,18 @@ def create_buggy():
     elif armour == "titanium":
         armour_cost=290
 
-    overall_cost = power_cost + aux_power_cost + tyres_cost + armour_cost
+    attack_cost=0
+    if attack == "spike":
+        attack_cost = int(qty_attack) * 5
+    if attack == "flame":
+        attack_cost = int(qty_attack) * 20
+    if attack == "charge":
+        attack_cost = int(qty_attack) * 28
+    if attack == "biohazard":
+        attack_cost = int(qty_attack) * 30
+
+
+    overall_cost = power_cost + aux_power_cost + tyres_cost + armour_cost + attack_cost
 
     try:
       with sql.connect(DATABASE_FILE) as con:
