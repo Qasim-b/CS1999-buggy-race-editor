@@ -61,3 +61,17 @@ RULES:
 **task3**
 Flag:
 >FLAG, partially completed- I am able to show the colour of the flag to the user when they edit their buggy
+
+ENV:
+> when programming, I set flask to development by inputting
+> 'FLASK_ENV="development" python app.py' into Git Bash
+> if I want to go into production mode
+> 'FLASK_ENV" python app.py' into Git Bash
+> production is the default state
+
+MULTI:
+>Sort of works, always starts off with a buggy from the database, also the stored values for radio buttons dont work due to limitations.
+> Couldnt get DELETE to work, would go on
+
+Test:
+>
