@@ -40,12 +40,12 @@ con.execute("""
     armour                VARCHAR(20),
     attack                VARCHAR(20),
     qty_attack            INTEGER DEFAULT 0,
-    fireproof             BOOLEAN,
-    insulated             BOOLEAN,
-    antibiotic            BOOLEAN,
-    banging               BOOLEAN,
+    fireproof             VARCHAR(20),
+    insulated             VARCHAR(20),
+    antibiotic            VARCHAR(20),
+    banging               VARCHAR(20),
     algo                  VARCHAR(20),
-    total_cost            INTEGER DEFAULT 0
+    total_cost            INTEGER
 
 
 
