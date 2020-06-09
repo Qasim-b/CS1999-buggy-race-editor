@@ -154,8 +154,19 @@ def create_buggy():
     if attack == "biohazard":
         attack_cost = int(qty_attack) * 30
 
+    hamster_booster_cost = int(hamster_booster) * 5
+    if fireproof == "True":
+        fireproof_cost=70
+    if insulated == "True":
+        insulated_cost=100
+    if antibiotic == "True":
+        antibiotic_cost=90
+    if banging == "True":
+        banging_cost=42
 
-    overall_cost = power_cost + aux_power_cost + tyres_cost + armour_cost + attack_cost
+
+    overall_cost = power_cost + aux_power_cost + tyres_cost + armour_cost + attack_cost + hamster_booster_cost + fireproof_cost + insulated_cost + antibiotic_cost + banging_cost
+
 
     try:
       with sql.connect(DATABASE_FILE) as con:
