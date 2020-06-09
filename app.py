@@ -178,12 +178,21 @@ def create_buggy():
 
 
     try:
+      buggy_id=request.form['id']
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
-        cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=?, fireproof=?, insulated=?, antibiotic=?, banging=?, algo=?, total_cost=? WHERE id=?",
-        (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, overall_cost, DEFAULT_BUGGY_ID))
-        con.commit()
-        msg = "Record successfully saved"
+        if buggy_id.isdigit():
+          cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=?, fireproof=?, insulated=?, antibiotic=?, banging=?, algo=?, total_cost=? WHERE id=?",
+          (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, overall_cost, buggy_id))
+        else:
+          cur.execute("INSERT INTO buggies (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, total_cost) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, overall_cost))
+          con.commit()
+          msg = "Record successfully saved"
+    except Exception as e:
+      msg = e
+      con.rollback()
+      con.commit()
+      msg = "Record successfully saved"
     except:
       con.rollback()
       msg = "error in update operation"
@@ -200,15 +209,20 @@ def show_buggies(): ## test hardcode code cost into this
   con.row_factory = sql.Row
   cur = con.cursor()
   cur.execute("SELECT * FROM buggies")
-  record = cur.fetchone();
-  return render_template("buggy.html", buggy = record) ##test cost
+  records = cur.fetchall();
+  return render_template("buggy.html", buggies = records) ##test cost
 
 #------------------------------------------------------------
 # a page for displaying the buggy
 #------------------------------------------------------------
-@app.route('/new')
-def edit_buggy():
-  return render_template("buggy-form.html")
+@app.route('/edit/<buggy_id>')
+def edit_buggy(buggy_id):
+    con = sql.connect(DATABASE_FILE)
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("SELECT * FROM buggies WHERE id=?",(buggy_id,))
+    record = cur.fetchone();
+    return render_template("buggy-form.html", buggy=record)
 
 
 #------------------------------------------------------------
