@@ -30,7 +30,7 @@ def create_buggy():
       cur.execute("SELECT * FROM buggies")
       record = cur.fetchone();
 
-      return render_template("buggy-form.html",buggy = record)
+      return render_template("buggy-form.html", buggy= None)
   elif request.method == 'POST':  ## added all data entry fields, need to validate and add costs
 
     con = sql.connect(DATABASE_FILE)
