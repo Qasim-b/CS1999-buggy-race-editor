@@ -155,12 +155,16 @@ def create_buggy():
         attack_cost = int(qty_attack) * 30
 
     hamster_booster_cost = int(hamster_booster) * 5
+    fireproof_cost = 0
     if fireproof == "True":
         fireproof_cost=70
+    insulated_cost= 0
     if insulated == "True":
         insulated_cost=100
+    antibiotic_cost=0
     if antibiotic == "True":
         antibiotic_cost=90
+    banging_cost= 0
     if banging == "True":
         banging_cost=42
 
