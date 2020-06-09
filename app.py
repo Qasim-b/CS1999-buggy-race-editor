@@ -23,11 +23,18 @@ def home():
 @app.route('/new', methods = ['POST', 'GET'])
 def create_buggy():
   if request.method == 'GET':
-    return render_template("buggy-form.html")
+
+      con = sql.connect(DATABASE_FILE)
+      con.row_factory = sql.Row
+      cur = con.cursor()
+      cur.execute("SELECT * FROM buggies")
+      record = cur.fetchone();
+
+      return render_template("buggy-form.html",buggy = record)
   elif request.method == 'POST':  ## added all data entry fields, need to validate and add costs
     msg=""
     qty_wheels = request.form['qty_wheels']
-    if not qty_wheels.isdigit():
+    if not qty_wheels.isdigit(): # basic validation for integer entries.
         msg = f"This is not a number:{qty_wheels}"
         return render_template("buggy-form.html",msg=msg)
     flag_color = request.form['flag_color']
@@ -35,14 +42,29 @@ def create_buggy():
     flag_pattern = request.form['flag_pattern']
     power_type = request.form['power_type']
     power_units = request.form['power_units']
+    if not power_units.isdigit():
+        msg = f"This is not a number:{power_units}"
+        return render_template("buggy-form.html",msg=msg)
     aux_power_type = request.form['aux_power_type']
     aux_power_units = request.form['aux_power_units']
+    if not aux_power_units.isdigit():
+        msg = f"This is not a number:{aux_power_units}"
+        return render_template("buggy-form.html",msg=msg)
     hamster_booster = request.form['hamster_booster']
+    if not hamster_booster.isdigit():
+        msg = f"This is not a number:{hamster_booster}"
+        return render_template("buggy-form.html",msg=msg)
     tyres = request.form['tyres']
     qty_tyres = request.form['qty_tyres']
+    if not qty_tyres.isdigit():
+        msg = f"This is not a number:{qty_tyres}"
+        return render_template("buggy-form.html",msg=msg)
     armour = request.form['armour']
     attack = request.form['attack']
     qty_attack = request.form['qty_attack']
+    if not qty_attack.isdigit():
+        msg = f"This is not a number:{qty_attack}"
+        return render_template("buggy-form.html",msg=msg)
     fireproof = request.form['fireproof']
     insulated = request.form['insulated']
     antibiotic = request.form['antibiotic']
@@ -73,7 +95,7 @@ def show_buggies(): ## test hardcode code cost into this
   cur = con.cursor()
   cur.execute("SELECT * FROM buggies")
   record = cur.fetchone();
-  return render_template("buggy.html", buggy = record,) ##test cost
+  return render_template("buggy.html", buggy = record) ##test cost
 
 #------------------------------------------------------------
 # a page for displaying the buggy
