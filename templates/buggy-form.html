@@ -4,7 +4,13 @@
 
 {% block content %}
 
-  <h1>Make buggy</h1>
+  <h1>
+    {% if buggy %}
+      Edit Buggy #{{buggy['id']}}
+    {% else %}
+      Create buggy
+    {% endif %}
+  </h1>
   <p>
     {{msg}}
   </p>
@@ -12,8 +18,8 @@
     <table>
 
     <tr>
-    <td><label for="qty_wheels">Id:</label></td>
-    <td><input type="text" name="id" value= "{{ buggy['id'] }}" /></td>
+    <td><input type="hidden" name="id" value= "{{ buggy['id'] }}" /></td>
+    <td></td>
     </tr>
 
     <tr><!-- applying task2-edit, doesn't like the radio buttons however, so only implementing on text fields-->
