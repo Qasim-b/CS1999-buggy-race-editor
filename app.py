@@ -32,6 +32,13 @@ def create_buggy():
 
       return render_template("buggy-form.html",buggy = record)
   elif request.method == 'POST':  ## added all data entry fields, need to validate and add costs
+
+    con = sql.connect(DATABASE_FILE)
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("SELECT * FROM buggies")
+    record = cur.fetchone();
+
     msg=""
     violations=""
     qty_wheels = request.form['qty_wheels'] # basic validation for integer entries., used to work until did task2-edit. But since then user only able to input numbers so no need to check if string
@@ -53,6 +60,15 @@ def create_buggy():
     antibiotic = request.form['antibiotic']
     banging = request.form['banging']
     algo = request.form['algo']
+    if int(qty_wheels)%2 != 0: ## check if even
+        msg = f"rule violated, there needs to be an even number of wheels!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+    if str(flag_color) == str(flag_color_secondary) and str(flag_pattern) != "plain": ## check if flag colors are not similar if pattern not plain
+        msg = f"rule violated, both flag colors cannot be the same"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+    if int(qty_tyres) < int(qty_wheels): ## check if enough tyres
+        msg = f"rule violated, there are not enough tires!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
