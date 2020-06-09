@@ -60,7 +60,7 @@ def create_buggy():
     antibiotic = request.form['antibiotic']
     banging = request.form['banging']
     algo = request.form['algo']
-    if not qty_wheels.isdigit(): ##has no use, just used to show i did task 1-valid. Dont need anymore.
+    if not qty_wheels.isdigit():
         msg = f"rule violated, enter a number for quantity of wheels!"
         return render_template("buggy-form.html",buggy = record, msg=msg)
     if int(qty_wheels)%2 != 0: ## check if even
@@ -74,9 +74,27 @@ def create_buggy():
     if str(flag_color) == str(flag_color_secondary) and str(flag_pattern) != "plain": ## check if flag colors are not similar if pattern not plain
         msg = f"rule violated, both flag colors cannot be the same"
         return render_template("buggy-form.html",buggy = record, msg=msg)
+
+    if not power_units.isdigit():
+        msg = f"rule violated, enter a number for power units!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+
+    if not hamster_booster.isdigit():
+        msg = f"rule violated, enter a number for hamster booster, if none enter 0!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+
+    if not qty_tyres.isdigit():
+        msg = f"rule violated, enter a number for quantity of tyres!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+
+    if not qty_attack.isdigit():
+        msg = f"rule violated, enter a number for quantity of attacks!"
+        return render_template("buggy-form.html",buggy = record, msg=msg)
+
     if int(qty_tyres) < int(qty_wheels): ## check if enough tyres
         msg = f"rule violated, there are not enough tires!"
         return render_template("buggy-form.html",buggy = record, msg=msg)
+
 
 
     power_cost = 0
