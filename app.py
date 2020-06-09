@@ -181,7 +181,7 @@ def create_buggy():
       buggy_id=request.form['id']
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
-        if buggy_id.isdigit():
+        if buggy_id.isdigit(): ##check if id number already present
           cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=?, fireproof=?, insulated=?, antibiotic=?, banging=?, algo=?, total_cost=? WHERE id=?",
           (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, overall_cost, buggy_id))
         else:
@@ -250,7 +250,7 @@ def summary():
 #   there always being a record to update (because the
 #   student needs to change that!)
 #------------------------------------------------------------
-@app.route('/delete', methods = ['POST'])
+@app.route('/delete', methods = ['POST']) ## tried to figure out, inputting <buggy_id> into route and method but no luck
 def delete_buggy():
   try:
     msg = "deleting buggy"
@@ -268,4 +268,4 @@ def delete_buggy():
 
 
 if __name__ == '__main__':
-   app.run(debug = True, host="0.0.0.0")
+   app.run(debug = True, host="0.0.0.0") ##can modift this for production or debug env by changing to False
