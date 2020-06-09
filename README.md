@@ -83,4 +83,4 @@ AUTOFILL:
 > However could also be useful on client side if they wanted to modify their own autofill.
 
 Tests:
-> Will do manual tests, shown in testing.md file
+> Will do test plan, shown in testing.md file
