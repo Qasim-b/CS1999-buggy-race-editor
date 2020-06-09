@@ -69,6 +69,21 @@ def create_buggy():
     if int(qty_tyres) < int(qty_wheels): ## check if enough tyres
         msg = f"rule violated, there are not enough tires!"
         return render_template("buggy-form.html",buggy = record, msg=msg)
+
+    power_cost = 0
+
+    if power_type == "petrol":
+        power_cost = int(power_units) * 4
+    elif power_type == "fusion":
+        power_cost = int(power_units) * 400
+    elif power_type == "steam":
+        power_cost = int(power_units) * 3
+    elif power_type == "bio":
+        power_cost = int(power_units) * 5
+    elif power_type == "electric":
+        power_cost = int(power_units) * 20
+
+
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
