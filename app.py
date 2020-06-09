@@ -72,7 +72,7 @@ def create_buggy():
 
     power_cost = 0
 
-    if power_type == "petrol":
+    if power_type == "petrol": ##cost calculations hardcoded into program
         power_cost = int(power_units) * 4
     elif power_type == "fusion":
         power_cost = int(power_units) * 400
@@ -82,13 +82,59 @@ def create_buggy():
         power_cost = int(power_units) * 5
     elif power_type == "electric":
         power_cost = int(power_units) * 20
+    elif power_type == "rocket":
+        power_cost = int(power_units) * 16
+    elif power_type == "hamster":
+        power_cost = int(power_units) * 3
+    elif power_type == "thermo":
+        power_cost = int(power_units) * 300
+    elif power_type == "solar":
+        power_cost = int(power_units) * 40
+    elif power_type == "solar":
+        power_cost = int(power_units) * 20
 
+    aux_power_cost = 0
+
+    if aux_power_type == "petrol":
+        aux_power_cost = int(aux_power_units) * 4
+    elif aux_power_type == "fusion":
+        aux_power_cost = int(aux_power_units) * 400
+    elif aux_power_type == "steam":
+        aux_power_cost = int(aux_power_units) * 3
+    elif aux_power_type == "bio":
+        aux_power_cost = int(aux_power_units) * 5
+    elif aux_power_type == "electric":
+        aux_power_cost = int(aux_power_units) * 20
+    elif aux_power_type == "rocket":
+        aux_power_cost = int(aux_power_units) * 16
+    elif aux_power_type == "hamster":
+        aux_power_cost = int(aux_power_units) * 3
+    elif aux_power_type == "thermo":
+        aux_power_cost = int(aux_power_units) * 300
+    elif aux_power_type == "solar":
+        aux_power_cost = int(aux_power_units) * 40
+    elif aux_power_type == "solar":
+        aux_power_cost = int(aux_power_units) * 20
+
+    tyres_cost= 0
+    if tyres == "knobbly":
+        tyres_cost = int(qty_tyres) * 15
+    if tyres == "slick":
+        tyres_cost = int(qty_tyres) * 10
+    if tyres == "steelband":
+        tyres_cost = int(qty_tyres) * 20
+    if tyres == "reactive":
+        tyres_cost = int(qty_tyres) * 40
+    if tyres == "maglev":
+        tyres_cost = int(qty_tyres) * 50
+
+    overall_cost = power_cost + aux_power_cost + tyres_cost
 
     try:
       with sql.connect(DATABASE_FILE) as con:
         cur = con.cursor()
         cur.execute("UPDATE buggies set qty_wheels=?, flag_color=?, flag_color_secondary=?, flag_pattern=?, power_type=?, power_units=?, aux_power_type=?, aux_power_units=?, hamster_booster=?, tyres=?, qty_tyres=?, armour=?, attack=?, qty_attack=?, fireproof=?, insulated=?, antibiotic=?, banging=?, algo=?, total_cost=? WHERE id=?",
-        (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, power_cost, DEFAULT_BUGGY_ID))
+        (qty_wheels, flag_color, flag_color_secondary, flag_pattern, power_type, power_units, aux_power_type, aux_power_units, hamster_booster, tyres, qty_tyres, armour, attack, qty_attack, fireproof, insulated, antibiotic, banging, algo, overall_cost, DEFAULT_BUGGY_ID))
         con.commit()
         msg = "Record successfully saved"
     except:
